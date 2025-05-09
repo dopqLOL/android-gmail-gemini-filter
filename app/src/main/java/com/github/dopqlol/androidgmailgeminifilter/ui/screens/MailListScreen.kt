@@ -35,7 +35,6 @@ fun MailListScreen(navController: NavController) {
                     navController.navigate(Screen.MailDetail.createRoute(mailId))
                 }
             )
-
         }
     }
 }
