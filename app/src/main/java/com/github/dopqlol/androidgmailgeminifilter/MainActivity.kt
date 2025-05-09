@@ -30,6 +30,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
+import com.github.dopqlol.androidgmailgeminifilter.ui.screens.LoginScreen
 
 
 @AndroidEntryPoint
@@ -40,15 +41,14 @@ class MainActivity : ComponentActivity() {
         setContent {
             AppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    DarkThemeShowcase(
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    LoginScreen(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
     }
 }
 
+//色チェック用
 @Composable
 fun DarkThemeShowcase(modifier: Modifier = Modifier) {
     Column(
