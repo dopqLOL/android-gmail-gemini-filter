@@ -2,6 +2,7 @@ package com.github.dopqlol.androidgmailgeminifilter.ui.screens
 
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -14,30 +15,39 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.github.dopqlol.androidgmailgeminifilter.data.dummyMailItems // ダミーデータをインポート
 import com.github.dopqlol.androidgmailgeminifilter.data.model.MailItem // MailItem データクラスをインポート
+import com.github.dopqlol.androidgmailgeminifilter.navigation.Screen
 import com.github.dopqlol.androidgmailgeminifilter.ui.theme.AppTheme
 
 @Composable
-fun MailListScreen() {
+fun MailListScreen(navController: NavController) {
     // LazyColumn を使ってリストを表示
     LazyColumn(
         modifier = Modifier.fillMaxSize()
     ) {
         items(dummyMailItems) { mailItem ->
-            MailItemRow(mailItem = mailItem)
+            MailItemRow(
+                mailItem = mailItem, // LazyColumn から提供される現在のメールアイテム
+                onItemClick = { mailId ->
+                    navController.navigate(Screen.MailDetail.createRoute(mailId))
+                }
+            )
         }
     }
 }
 
 @Composable
-fun MailItemRow(mailItem: MailItem) {
+fun MailItemRow(mailItem: MailItem, onItemClick: (String) -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 8.dp, vertical = 4.dp),
+            .padding(horizontal = 8.dp, vertical = 4.dp)
+            .clickable { onItemClick(mailItem.id) }, // clickable 修飾子を追加
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant // カードの背景色
+            containerColor = MaterialTheme.colorScheme.surfaceVariant
         )
     ) {
         Row(
@@ -81,6 +91,7 @@ fun MailItemRow(mailItem: MailItem) {
 @Composable
 fun MailListScreenPreview() {
     AppTheme {
-        MailListScreen()
+        // Previewではダミーの NavController を渡す必要があります
+        MailListScreen(navController = rememberNavController()) // ダミーの NavController を渡す
     }
 }

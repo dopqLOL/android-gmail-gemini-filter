@@ -5,6 +5,3 @@ data class MailDetail(
     val subject: String, // 件名
     val body: String // 本文
 )
-
-
-

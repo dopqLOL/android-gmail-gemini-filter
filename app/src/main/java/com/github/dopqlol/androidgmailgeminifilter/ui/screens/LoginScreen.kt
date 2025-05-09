@@ -9,10 +9,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.github.dopqlol.androidgmailgeminifilter.ui.theme.AppTheme // AppThemeをインポート
+import androidx.navigation.NavController // これを追加
+import androidx.navigation.compose.rememberNavController
+import com.github.dopqlol.androidgmailgeminifilter.navigation.AppNavigation
+import com.github.dopqlol.androidgmailgeminifilter.navigation.Screen
 
 
 @Composable
-fun LoginScreen(modifier: Modifier = Modifier) {
+fun LoginScreen(navController: NavController, modifier: Modifier = Modifier) {
     // 画面全体を占めるコンテナ
     Column(
         modifier = Modifier
@@ -24,6 +28,7 @@ fun LoginScreen(modifier: Modifier = Modifier) {
         // ここにUI要素を追加します
         Button(onClick = {
             // TODO: ログイン処理を実装
+            navController.navigate(Screen.MailList.route) // メール一覧画面へ遷移
         }) {
             Text("Googleでサインイン")
         }
@@ -33,7 +38,7 @@ fun LoginScreen(modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun LoginScreenPreview() {
-    AppTheme { // ダークテーマを適用
-        LoginScreen()
+    AppTheme {
+        LoginScreen(navController = rememberNavController())
     }
 }

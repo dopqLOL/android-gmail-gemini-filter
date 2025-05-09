@@ -33,4 +33,3 @@ val dummyMailDetail = MailDetail(
     sender = "Sender A",
     subject = "Subject 1",
     body = "This is the body of the first email. It contains some sample text to demonstrate the mail detail screen."
-)

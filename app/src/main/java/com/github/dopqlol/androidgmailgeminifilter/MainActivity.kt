@@ -30,6 +30,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
+import com.github.dopqlol.androidgmailgeminifilter.navigation.AppNavigation
 import com.github.dopqlol.androidgmailgeminifilter.ui.screens.LoginScreen
 
 
@@ -40,8 +41,11 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    LoginScreen(modifier = Modifier.padding(innerPadding))
+ feature/navigation
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding -> // innerPadding を受け取る
+                    AppNavigation(modifier = Modifier.padding(innerPadding))
+
+
                 }
             }
         }
