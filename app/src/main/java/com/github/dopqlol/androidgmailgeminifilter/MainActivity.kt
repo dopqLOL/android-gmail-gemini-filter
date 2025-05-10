@@ -32,8 +32,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
 import com.github.dopqlol.androidgmailgeminifilter.navigation.AppNavigation
 import com.github.dopqlol.androidgmailgeminifilter.ui.screens.LoginScreen
-
-
+import androidx.hilt.navigation.compose.hiltViewModel
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +40,6 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AppTheme {
- feature/navigation
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding -> // innerPadding を受け取る
                     AppNavigation(modifier = Modifier.padding(innerPadding))
 

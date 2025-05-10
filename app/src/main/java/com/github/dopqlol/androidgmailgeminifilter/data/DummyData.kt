@@ -1,7 +1,7 @@
 package com.github.dopqlol.androidgmailgeminifilter.data
 
-import com.github.dopqlol.androidgmailgeminifilter.data.model.MailDetail
-import com.github.dopqlol.androidgmailgeminifilter.data.model.MailItem
+import com.github.dopqlol.androidgmailgeminifilter.ui.model.MailDetail
+import com.github.dopqlol.androidgmailgeminifilter.ui.model.MailItem
 
 // ダミーのメールデータリスト
 val dummyMailItems = listOf(
@@ -32,4 +32,4 @@ val dummyMailItems = listOf(
 val dummyMailDetail = MailDetail(
     sender = "Sender A",
     subject = "Subject 1",
-    body = "This is the body of the first email. It contains some sample text to demonstrate the mail detail screen."
+    body = "This is the body of the first email. It contains some sample text to demonstrate the mail detail screen.")

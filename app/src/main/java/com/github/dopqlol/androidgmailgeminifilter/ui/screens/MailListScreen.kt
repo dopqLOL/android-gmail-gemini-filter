@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.github.dopqlol.androidgmailgeminifilter.data.dummyMailItems // ダミーデータをインポート
-import com.github.dopqlol.androidgmailgeminifilter.data.model.MailItem // MailItem データクラスをインポート
+import com.github.dopqlol.androidgmailgeminifilter.ui.model.MailItem // MailItem データクラスをインポート
 import com.github.dopqlol.androidgmailgeminifilter.navigation.Screen
 import com.github.dopqlol.androidgmailgeminifilter.ui.theme.AppTheme
 

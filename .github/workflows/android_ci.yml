@@ -3,7 +3,12 @@ name: Android CI
 on:
   push:
     branches:
-      - main # または他の対象ブランチ
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
 
 jobs:
   build_and_test:
