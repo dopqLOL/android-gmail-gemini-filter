@@ -11,10 +11,13 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import com.github.dopqlol.androidgmailgeminifilter.data.repository.MailRepository
+
 
 @HiltViewModel
 class MailDetailViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle // ナビゲーション引数を受け取るために追加
+    private val savedStateHandle: SavedStateHandle,
+    private val mailRepository: MailRepository
 ) : ViewModel() {
 
     // UIに公開するメール詳細の状態 (読み取り専用)
@@ -30,14 +33,10 @@ class MailDetailViewModel @Inject constructor(
 
     private fun loadMailDetail() {
         viewModelScope.launch {
-            // TODO: mailId を使ってRepositoryから実際のメール詳細データを取得する
-            // 現時点では、渡されたmailIdに関わらず固定のダミーデータを表示
             if (mailId != null) {
-                // ここで mailId を使って何か処理をする (例: ログ出力)
                 println("MailDetailViewModel: Received mailId = $mailId")
-                _mailDetail.value = dummyMailDetail // 固定のダミーデータを設定
+                _mailDetail.value = mailRepository.getMailDetail(mailId)
             } else {
-                // mailId が渡されなかった場合の処理 (例: エラー表示など)
                 println("MailDetailViewModel: mailId is null")
                 _mailDetail.value = null
             }
