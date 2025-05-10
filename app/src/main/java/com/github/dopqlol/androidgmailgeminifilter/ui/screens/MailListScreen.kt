@@ -21,23 +21,33 @@ import com.github.dopqlol.androidgmailgeminifilter.data.dummyMailItems // ダミ
 import com.github.dopqlol.androidgmailgeminifilter.ui.model.MailItem // MailItem データクラスをインポート
 import com.github.dopqlol.androidgmailgeminifilter.navigation.Screen
 import com.github.dopqlol.androidgmailgeminifilter.ui.theme.AppTheme
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.github.dopqlol.androidgmailgeminifilter.ui.viewmodels.MailListViewModel
 
 @Composable
-fun MailListScreen(navController: NavController) {
-    // LazyColumn を使ってリストを表示
+fun MailListScreen(
+    navController: NavController,
+    viewModel: MailListViewModel = hiltViewModel() // ViewModel を取得
+) {
+    val mailItems by viewModel.mailItems.collectAsState() // ViewModelからメールリストを取得
+
     LazyColumn(
         modifier = Modifier.fillMaxSize()
     ) {
-        items(dummyMailItems) { mailItem ->
+        items(mailItems) { mailItem -> // ViewModelのmailItemsを使用
             MailItemRow(
-                mailItem = mailItem, // LazyColumn から提供される現在のメールアイテム
+                mailItem = mailItem,
                 onItemClick = { mailId ->
+                    viewModel.onMailItemClicked(mailId) // ViewModelのメソッドを呼び出し
                     navController.navigate(Screen.MailDetail.createRoute(mailId))
                 }
             )
         }
     }
 }
+
 
 @Composable
 fun MailItemRow(mailItem: MailItem, onItemClick: (String) -> Unit) {
@@ -91,7 +101,7 @@ fun MailItemRow(mailItem: MailItem, onItemClick: (String) -> Unit) {
 @Composable
 fun MailListScreenPreview() {
     AppTheme {
-        // Previewではダミーの NavController を渡す必要があります
-        MailListScreen(navController = rememberNavController()) // ダミーの NavController を渡す
+        MailListScreen(navController = rememberNavController())
     }
 }
+
