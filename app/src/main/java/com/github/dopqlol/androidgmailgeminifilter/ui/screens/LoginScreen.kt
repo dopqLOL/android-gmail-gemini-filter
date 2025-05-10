@@ -13,12 +13,20 @@ import androidx.navigation.NavController // これを追加
 import androidx.navigation.compose.rememberNavController
 import com.github.dopqlol.androidgmailgeminifilter.navigation.AppNavigation
 import com.github.dopqlol.androidgmailgeminifilter.navigation.Screen
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.github.dopqlol.androidgmailgeminifilter.ui.viewmodels.LoginViewModel 
+
 
 
 @Composable
-fun LoginScreen(navController: NavController, modifier: Modifier = Modifier) {
+fun LoginScreen(
+    navController: NavController,
+    modifier: Modifier = Modifier,
+    loginViewModel: LoginViewModel = hiltViewModel() // ViewModel を取得
+) {
     // 画面全体を占めるコンテナ
     Column(
+
         modifier = Modifier
             .fillMaxSize() // 画面いっぱいに広がる
             .padding(16.dp), // 余白を追加

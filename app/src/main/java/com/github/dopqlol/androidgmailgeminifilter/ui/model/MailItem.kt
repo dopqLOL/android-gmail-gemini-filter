@@ -1,4 +1,4 @@
-package com.github.dopqlol.androidgmailgeminifilter.data.model
+package com.github.dopqlol.androidgmailgeminifilter.ui.model
 
 data class MailItem(
     val id: String,
