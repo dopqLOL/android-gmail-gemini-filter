@@ -25,7 +25,7 @@ sealed class Screen(val route: String) {
 fun AppNavigation(modifier: Modifier = Modifier) {
     val navController = rememberNavController() // NavController を取得
 
-    NavHost(navController = navController, startDestination = Screen.Login.route) { // ナビゲーションホスト
+    NavHost(navController = navController, startDestination = Screen.Login.route, modifier = modifier) { // ナビゲーションホスト
         composable(Screen.Login.route) { backStackEntry -> // backStackEntry を受け取るように変更
             LoginScreen(navController = navController) // NavHost の navController を渡す
         }
@@ -39,7 +39,7 @@ fun AppNavigation(modifier: Modifier = Modifier) {
             // メールIDを引数から取得
             val mailId = backStackEntry.arguments?.getString("mailId")
             // TODO: 取得した mailId を使ってメール詳細データを表示
-            MailDetailScreen(mailId = mailId) // メール詳細画面
+            MailDetailScreen()  // メール詳細画面
         }
     }
 }
