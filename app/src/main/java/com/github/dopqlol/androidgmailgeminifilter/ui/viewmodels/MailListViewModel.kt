@@ -10,9 +10,14 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import com.github.dopqlol.androidgmailgeminifilter.data.repository.MailRepository
+
 
 @HiltViewModel
-class MailListViewModel @Inject constructor() : ViewModel() {
+class MailListViewModel @Inject constructor(
+    private val mailRepository: MailRepository
+) : ViewModel() {
+
 
     private val _mailItems = MutableStateFlow<List<MailItem>>(emptyList())
     val mailItems: StateFlow<List<MailItem>> = _mailItems.asStateFlow()
@@ -23,7 +28,7 @@ class MailListViewModel @Inject constructor() : ViewModel() {
 
     private fun loadMailItems() {
         viewModelScope.launch {
-            _mailItems.value = dummyMailItems
+            _mailItems.value = mailRepository.getMails()
         }
     }
 
